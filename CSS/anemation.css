@@ -1,0 +1,33 @@
+@keyframes moving {
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(7px);
+  }
+}
+
+.scroll-box {
+  animation: moving 1s infinite ease-in-out alternate;
+}
+
+/* ---- GSAP Animation Support ---- */
+
+.gsap-word {
+  display: inline-block;
+}
+
+.gsap-line {
+  display: block;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.and-word {
+  display: inline-block;
+}
+
+
+

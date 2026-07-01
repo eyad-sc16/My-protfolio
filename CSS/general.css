@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main--body--background--color);
+  height: 100dvh;
+  padding: 0 2rem;
+  height: 3000px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* font-family: "Plus Jakarta Sans", sans-serif;
+"Syne", sans-serif;
+ */
+:root {
+  --black--background: #252323;
+  --main--text: #0d0d0d;
+  --titels--text: #1a1a1a;
+  --long--text: #191919;
+  --main--body--background--color: #f5f5f5;
+}

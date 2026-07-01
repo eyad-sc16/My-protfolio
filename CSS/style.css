@@ -1,0 +1,338 @@
+main {
+  width: 100%;
+  min-height: 100dvh;
+  height: auto;
+}
+
+svg {
+  width: clamp(6rem, 7vw, 7rem);
+}
+
+h1 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+header {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 4rem;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 100;
+  border-radius: 4rem;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.nav {
+  font-family: "Inter";
+  font-weight: 350;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.nav ul li {
+  list-style: none;
+}
+
+.nav-link {
+  position: relative;
+  width: 7rem;
+  text-align: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--main--text);
+}
+
+.hero-section {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-box {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif, "Syne", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.5rem);
+}
+
+.arrow-down-icon {
+  width: 1.5rem;
+}
+
+.about-section {
+  width: 100%;
+  min-height: 100dvh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(3rem);
+  padding-top: 2rem;
+}
+
+.about-section h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.about-title {
+  color: var(--titels--text);
+}
+
+.about-text {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  display: grid;
+  font-family: "Inter";
+  color: var(--long--text);
+}
+
+.main-about-content {
+  display: flex;
+  height: fit-content;
+  gap: calc(2.5rem);
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(2rem);
+}
+
+.last-gsap-line {
+  color: rgb(120, 120, 120);
+}
+
+.pixle-image-container {
+  background-color: bisque;
+  height: contain;
+  width: 15rem;
+  min-width: 10rem;
+  background-image: url(../ASSETS/images/my-image.png);
+}
+
+.h2-conatainer {
+  border-right: 0.1rem solid var(--black--background);
+  border-left: 0.1rem solid var(--black--background);
+  padding: 0 0.5rem;
+}
+
+.h2-conatainer h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-family: "Syne", sans-serif, "Inter", "Plus Jakarta Sans";
+}
+
+.general-words-container {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: calc(1rem);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.general-words-container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 5rem;
+  background: linear-gradient(
+    to right,
+    rgba(60, 60, 60, 0.4),
+    rgba(89, 89, 89, 0.4),
+    rgba(77, 77, 77, 0.4),
+    rgba(122, 122, 122, 0.4)
+  );
+  filter: blur(20px);
+}
+
+.general-words-container::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 5rem;
+  background: linear-gradient(
+    to left,
+    rgba(60, 60, 60, 0.4),
+    rgba(89, 89, 89, 0.4),
+    rgba(77, 77, 77, 0.4),
+    rgba(122, 122, 122, 0.4)
+  );
+  filter: blur(20px);
+}
+
+.words-container {
+  width: 100%;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: clamp(1.8rem, 3.5vw, 3rem);
+  overflow: hidden;
+}
+
+.words-container p {
+  width: fit-content;
+  height: fit-content;
+  font-family: "Inter", "Plus Jakarta Sans", "Syne", sans-serif;
+  font-weight: 700;
+  text-wrap: nowrap;
+}
+
+.words-container span {
+  color: rgb(108, 108, 108);
+}
+
+.advantages-main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-family: "Inter", "Plus Jakarta Sans", "Syne", sans-serif;
+  gap: 2rem;
+}
+
+.advantages-content {
+  width: 95%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  min-height: 6rem;
+  border: 0.1rem dashed rgb(0, 0, 0);
+  letter-spacing: 0.3rem;
+  color: var(--main--body--background--color);
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2rem;
+}
+
+.advantages-content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--black--background);
+  transition: all 0.2s;
+  z-index: 5;
+}
+
+.advantages-content:hover:before {
+  width: 100%;
+}
+
+.advantages-content:hover .arrow-icon {
+  fill: white;
+}
+
+.advantages-content:hover .hover-word-container {
+  display: none;
+}
+
+.advantages-content:hover p {
+  left: 2rem;
+}
+
+.advantages-content:hover .inner-advantges-content ul li {
+  opacity: 1;
+}
+
+.advantages-content .hover-word-container {
+  position: absolute;
+  color: black;
+  text-align: center;
+  width: 100%;
+  z-index: 7;
+}
+
+.content-title {
+  position: relative;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  font-size: clamp(0.6rem, 5vw, 1.5rem);
+  text-wrap: wrap;
+  z-index: 6;
+}
+
+.content-title p {
+  position: relative;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow-container {
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  width: 3rem;
+  z-index: 6;
+  transition: all 0.2s ease-in-out;
+}
+
+.arrow-icon {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+}
+
+.inner-advantges-content {
+  padding: 1rem 2rem;
+  z-index: 5;
+  font-size: clamp(1rem, 5vw, 1.1rem);
+  letter-spacing: normal;
+  color: rgb(164, 164, 164);
+  line-height: 2rem;
+}
+
+.inner-advantges-content ul li {
+  opacity: 0;
+}
+
+.inner-advantges-content ul li::marker {
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif, "Syne";
+}
