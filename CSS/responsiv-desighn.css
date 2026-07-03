@@ -1,0 +1,38 @@
+@media (max-width: 480px) {
+  .center-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .pixle-image-container {
+    display: none;
+  }
+  .about-section .advantages-content {
+    width: 98%;
+  }
+  .advantages-content .content-title {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    width: 100%;
+    color: black;
+    z-index: 8;
+  }
+
+  .advantages-content:hover .content-title p {
+    left: 0;
+    color: var(--main--body--background--color);
+  }
+
+  .hover-word-container {
+    display: none;
+  }
+
+  .inner-advantges-content {
+    background-color: var(--black--background);
+  }
+  .inner-advantges-content ul li {
+    opacity: 1;
+  }
+}

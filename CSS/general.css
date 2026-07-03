@@ -11,7 +11,6 @@
 body {
   background-color: var(--main--body--background--color);
   height: 100dvh;
-  padding: 0 2rem;
   height: 3000px;
 }
 
@@ -28,6 +27,7 @@ h6 {
 "Syne", sans-serif;
  */
 :root {
+  scroll-behavior: smooth;
   --black--background: #252323;
   --main--text: #0d0d0d;
   --titels--text: #1a1a1a;

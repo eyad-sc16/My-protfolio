@@ -3,6 +3,9 @@ main {
   min-height: 100dvh;
   height: auto;
 }
+section {
+  padding: 0 2rem;
+}
 
 svg {
   width: clamp(6rem, 7vw, 7rem);
@@ -16,52 +19,11 @@ h1 {
 .hidden {
   display: none;
 }
-
-.rotate {
-  transform: rotate(180deg);
-}
-
-header {
-  position: fixed;
-  top: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 4rem;
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  z-index: 100;
-  border-radius: 4rem;
-  overflow: hidden;
+.title-hidden {
   opacity: 0;
 }
-
-.nav {
-  font-family: "Inter";
-  font-weight: 350;
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-.nav ul li {
-  list-style: none;
-}
-
-.nav-link {
-  position: relative;
-  width: 7rem;
-  text-align: center;
-}
-
-.nav a {
-  text-decoration: none;
-  color: var(--main--text);
+.rotate {
+  transform: rotate(180deg);
 }
 
 .hero-section {
@@ -69,11 +31,12 @@ header {
   height: 100dvh;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .scroll-box {
   position: absolute;
-  bottom: 3rem;
+  bottom: 10%;
   left: 50%;
   font-family: "Inter", "Plus Jakarta Sans", sans-serif, "Syne", sans-serif;
   display: flex;
@@ -95,19 +58,24 @@ header {
   align-items: center;
   gap: calc(3rem);
   padding-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.about-section {
+  padding: 0 0;
 }
 
 .about-section h2 {
   font-size: clamp(2rem, 5vw, 4rem);
 }
 
-.about-title {
+.about-section .about-title {
   color: var(--titels--text);
+  font-size: clamp(1.6rem, 5vw, 3rem);
 }
 
 .about-text {
-  font-size: clamp(1.2rem, 2vw, 2rem);
-  display: grid;
+  font-size: clamp(0.9rem, 2vw, 2rem);
   font-family: "Inter";
   color: var(--long--text);
 }
@@ -140,6 +108,7 @@ header {
   border-right: 0.1rem solid var(--black--background);
   border-left: 0.1rem solid var(--black--background);
   padding: 0 0.5rem;
+  text-align: center;
 }
 
 .h2-conatainer h2 {
@@ -153,11 +122,10 @@ header {
   width: fit-content;
   display: flex;
   align-items: center;
-  gap: calc(1rem);
   overflow: hidden;
   max-width: 100%;
 }
-
+/* 
 .general-words-container::before {
   content: "";
   position: absolute;
@@ -192,7 +160,7 @@ header {
     rgba(122, 122, 122, 0.4)
   );
   filter: blur(20px);
-}
+} */
 
 .words-container {
   width: 100%;
@@ -200,7 +168,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  line-height: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: clamp(2rem, 3.5vw, 3.1rem);
   overflow: hidden;
 }
 
@@ -229,7 +197,7 @@ header {
 }
 
 .advantages-content {
-  width: 95%;
+  width: 90%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -272,10 +240,6 @@ header {
   left: 2rem;
 }
 
-.advantages-content:hover .inner-advantges-content ul li {
-  opacity: 1;
-}
-
 .advantages-content .hover-word-container {
   position: absolute;
   color: black;
@@ -285,12 +249,12 @@ header {
 }
 
 .content-title {
-  position: relative;
+  position: absolute;
   height: 2rem;
   display: flex;
   align-items: center;
   padding-left: 0.5rem;
-  font-size: clamp(0.6rem, 5vw, 1.5rem);
+  font-size: clamp(0.5rem, 5vw, 1.5rem);
   text-wrap: wrap;
   z-index: 6;
 }
@@ -308,31 +272,67 @@ header {
   display: flex;
   align-items: center;
   height: fit-content;
-  width: 3rem;
+  width: clamp(1.7rem, 2.7vw, 3rem);
   z-index: 6;
   transition: all 0.2s ease-in-out;
 }
 
 .arrow-icon {
-  width: 100%;
-  height: 100%;
+  width: clamp(4rem, 5vw, 5rem);
+  height: clamp(4rem, 5vw, 5rem);
   transition: all 0.3s;
 }
 
 .inner-advantges-content {
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   z-index: 5;
   font-size: clamp(1rem, 5vw, 1.1rem);
   letter-spacing: normal;
   color: rgb(164, 164, 164);
   line-height: 2rem;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif, "Syne";
+  height: fit-content;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease;
+}
+
+.inner-advantges-content.inner-open {
+  padding: 1rem 2rem;
+  max-height: 20rem;
+  opacity: 1;
+  visibility: visible;
 }
 
 .inner-advantges-content ul li {
   opacity: 0;
 }
+.advantages-content:hover ul li {
+  opacity: 1;
+}
+
+.inner-advantges-content.inner-open:hover ul li {
+  opacity: 1;
+}
 
 .inner-advantges-content ul li::marker {
   font-size: clamp(1rem, 5vw, 1.2rem);
-  font-family: "Plus Jakarta Sans", "Inter", sans-serif, "Syne";
+  color: gold;
+}
+
+.big-title-section {
+  width: 100%;
+  height: fit-content;
+}
+.big-title h1 {
+  letter-spacing: 1rem;
+  font-size: clamp(4rem, 15vw, 4.5rem);
+}
+.big-title {
+  filter: drop-shadow(0 0 10px rgba(10, 10, 10, 0.3))
+    drop-shadow(0 0 20px rgba(10, 10, 10, 0.7));
 }
