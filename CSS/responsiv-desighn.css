@@ -1,7 +1,21 @@
 @media (max-width: 480px) {
+  header {
+    font-weight: 600;
+  }
   .center-content {
     align-items: center;
     text-align: center;
+  }
+
+  .main-about-content {
+    padding: 0;
+  }
+  .about-text {
+    font-weight: 500;
+  }
+  .about-text,
+  .about-title {
+    left: 0rem;
   }
 
   .pixle-image-container {
@@ -10,6 +24,7 @@
   .about-section .advantages-content {
     width: 98%;
   }
+
   .advantages-content .content-title {
     padding: 0;
     display: flex;
@@ -28,7 +43,15 @@
   .hover-word-container {
     display: none;
   }
+  .inner-advantges-content {
+    background-color: var(--black--background);
+  }
+  .inner-advantges-content ul li {
+    opacity: 1;
+  }
+}
 
+@media (min-width: 740px) and (max-width: 1281px) {
   .inner-advantges-content {
     background-color: var(--black--background);
   }
