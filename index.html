@@ -13,18 +13,44 @@
 
 <body>
   <header>
-    <nav>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Skills</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact Me</a></li>
-      </ul>
-    </nav>
+    <div class="burger-menue header-container">
+      <div id="burger-menue-icon-container">
+        <svg id="burger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+          <path fill="#0d0d0d"
+            d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
+        </svg>
+        <div class="menue-items">
+          <nav>
+            <li><a href="#">Contact Me</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Tools</a></li>
+            <li><a href="#">projects</a></li>
+            <li><a href="#">Accounts</a></li>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+    <a href="#">
+      <div class="name-text-container header-container">
+        <h3>EYAD</h3>
+      </div>
+    </a>
+
+    <div class="theme-icon header-container theme-icon-dark">
+      <div id="theme-icon-container">
+        <svg class="theme-svg theme-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke-width="1.5" stroke="currentColor">
+          <path class="theme-path" stroke-linecap="round" stroke-linejoin="round"
+            d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+        </svg>
+
+      </div>
+
+    </div>
   </header>
   <main>
     <section class="hero-section" id="hero-section">
-
       <div class="hock-container">
         <h1 class="hock-title">Your Startup's Best <br> Frontend Choice </h1>
         <div>
@@ -32,7 +58,7 @@
         </div>
         <div class="links">
           <a class="email-link"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=youremail@gmail.com&su=What do you think about it"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=eyadnasser499@gmail.com&su=What do you think about it"
             target="_blank" aria-label="Email Me">Email Me</a>
           <a class="chat-link" href="" target="_blank" aria-label="Chat">Chat</a>
         </div>
@@ -197,11 +223,107 @@
     <section class="columms-section">
 
     </section>
-    <!-- <section class="big-title-section">
-      <div class="big-title">
-        <h1>Skills</h1>
+    <section class="tools-section">
+      <div class="big-title-container">
+
+        <div class="big-title">
+          <h1>Tools</h1>
+          <div class="sub-title">The techniques I used</div>
+        </div>
       </div>
-    </section> -->
+
+      <div class="general-tools-container">
+        <div class="left-container inner-tool-container">
+          <div class="general-tool-title">
+            <div class="tool-title">
+              <span>GSAP</span>
+              <div class="plus-icon-container">
+                <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content hidden">
+              <p>Smooth motion and transitions that make the site feel alive</p>
+            </div>
+          </div>
+          <div class="general-tool-title">
+            <div class="tool-title">
+              <span>ScrollTrigger</span>
+              <div class="plus-icon-container">
+                <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content hidden">
+              <p>Scroll-triggered animations that keep visitors engaged</p>
+            </div>
+          </div>
+          <div class="general-tool-title">
+            <div class="tool-title">
+              <span>SplitType</span>
+              <div class="plus-icon-container">
+                <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content hidden">
+              <p>A silky, lag-free browsing experience</p>
+            </div>
+          </div>
+        </div>
+        <div class="right-container inner-tool-container">
+          <div class="general-tool-title">
+            <div class="tool-title">
+              <span>Custom Properties</span>
+              <div class="plus-icon-container">
+                <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content hidden">
+              <p>Fully responsive design that looks great on any screen or device</p>
+            </div>
+          </div>
+          <div class="general-tool-title">
+            <div class="tool-title">
+              <span>Grid & Flexbox</span>
+              <div class="plus-icon-container">
+                <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content hidden">
+              <p>Custom visual identity, not a copy-paste template</p>
+            </div>
+          </div>
+          <div class="general-tool-title">
+            <div class="tool-title">
+              <span>Clip-path</span>
+              <div class="plus-icon-container">
+                <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="tool-content hidden">
+              <p>Easy to update themes and colors down the line</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </main>
   <footer>
     <div class="accounts">

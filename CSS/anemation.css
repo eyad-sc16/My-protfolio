@@ -7,12 +7,24 @@
   }
 }
 
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(1.875rem);
+  }
+  100% {
+    transform: translateY(-1.875rem);
+  }
+}
+
 .scroll-box {
   animation: moving 1s infinite ease-in-out alternate;
 }
 
 /* ---- GSAP Animation Support ---- */
 
+.menue-items {
+  animation: fadeInUp 0.3s ease-in;
+}
 .gsap-word {
   display: inline-block;
 }
@@ -28,6 +40,3 @@
 .and-word {
   display: inline-block;
 }
-
-
-
