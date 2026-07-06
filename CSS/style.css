@@ -260,6 +260,13 @@ h1 {
 
 .arrow-down-icon {
   width: 1.5rem;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.arrow-down-icon path {
+  fill: #0d0d0d;
 }
 
 /* about section */
