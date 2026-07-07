@@ -82,11 +82,12 @@ const menueItemsBox = document.querySelector(".menue-items");
   const generalToolTitle = document.querySelectorAll('.general-tool-title')
   const plusIconContainer = document.querySelectorAll('.general-tool-title .plus-icon-container')
   const toolContent = document.querySelectorAll('.general-tool-title .tool-content')
-
+  const descriptionContent = document.querySelectorAll('.description-content')
 
   for (let i = 0; i < generalToolTitle.length; i++) {
     generalToolTitle[i].addEventListener('click', function () {
       toolContent[i].classList.toggle('hidden')
+      descriptionContent[i].classList.toggle('hidden')
       plusIconContainer[i].classList.toggle('rotate-45-deg')
     })
   }

@@ -37,7 +37,7 @@
 
   .advantages-content:hover .content-title p {
     left: 0;
-    color: var(--main--body--background--color);
+    color: var(--white-main--text);
   }
 
   .hover-word-container {
@@ -61,12 +61,14 @@
   }
 }
 
-/* 
-@media (min-width: 740px) and (max-width: 1281px) {
-  .inner-advantges-content {
-    background-color: var(--black--background);
+
+@media (min-width: 481px) and (max-width: 920px) {
+
+  .tools-section .general-tools-container {
+    flex-direction: column;
   }
-  .inner-advantges-content ul li {
-    opacity: 1;
+
+  .inner-tool-container {
+    width: 100%;
   }
-} */
+}

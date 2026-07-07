@@ -10,7 +10,6 @@ header {
   align-items: center;
   height: clamp(3rem, 5vw, 4rem);
   font-size: clamp(0.8rem, 2vw, 1.1rem);
-  background-color: rgba(255, 255, 255, 0.3);
   background-color: var(--main--body--background--color);
   z-index: 100;
 }
@@ -156,7 +155,7 @@ h1 {
 }
 
 .arrow-lighting {
-  fill: #ffffff;
+  fill: var(--white-main--text);
 }
 
 .theme-icon-dark {
@@ -164,7 +163,7 @@ h1 {
 }
 
 .theme-light {
-  fill: var(--main--body--background--color);
+  fill: var(--white-main--text);
 }
 
 /* hero section */
@@ -217,7 +216,7 @@ h1 {
 
 .links a {
   text-decoration: none;
-  color: var(--main--body--background--color);
+  color: var(--white-main--text);
   backdrop-filter: blur(20px);
   padding: 0.5rem 2rem;
   border-radius: 2rem;
@@ -280,11 +279,10 @@ h1 {
   align-items: center;
   gap: calc(3rem);
   margin-bottom: 3.5rem;
+  padding: 0 0;
+  scroll-margin-top: 4rem;
 }
 
-.about-section {
-  padding: 0 0;
-}
 
 .about-section h2 {
   font-size: clamp(2rem, 5vw, 4rem);
@@ -382,7 +380,7 @@ h1 {
   min-height: 6rem;
   border: 0.1rem dashed rgb(0, 0, 0);
   letter-spacing: 0.3rem;
-  color: var(--main--body--background--color);
+  color: var(--white-main--text);
   cursor: pointer;
   overflow: hidden;
   border-radius: 2rem;
@@ -405,7 +403,7 @@ h1 {
 }
 
 .advantages-content:hover .arrow-icon {
-  fill: #ffffff;
+  fill: var(--white-main--text);
 }
 
 .advantages-content:hover .hover-word-container {
@@ -497,7 +495,7 @@ h1 {
 /* tools section */
 
 .tools-section {
-  padding: 5%;
+  padding: 3% 5%;
   height: fit-content;
 }
 
@@ -550,7 +548,9 @@ h1 {
   flex-direction: column;
   width: 100%;
   border-bottom: 0.1rem dashed var(--long--text);
+
 }
+
 
 .tool-title {
   position: relative;
@@ -604,8 +604,13 @@ h1 {
 }
 
 .tool-content:not(.hidden) {
-  max-height: 15rem;
+  max-height: 20rem;
   opacity: 1;
+}
+
+.tool-content p,
+.description-content p {
+  padding: 0.5rem;
 }
 
 .tool-content p {
@@ -614,5 +619,26 @@ h1 {
   font-family: "Inter", sans-serif, "Plus Jakarta Sans", "Syne";
   color: var(--brown-primary);
   font-weight: 500;
+  font-size: clamp(0.9rem, 5vw, 1.2rem);
+}
 
+.description-content {
+  height: fit-content;
+  width: 100%;
+  font-family: "Inter", sans-serif, "Plus Jakarta Sans", "Syne";
+  font-size: clamp(1.1rem, 5vw, 1.5rem);
+}
+
+.description-content span {
+  font-weight: 900;
+}
+
+.description-content a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.description-content a:hover {
+  color: var(--brown-primary);
 }
