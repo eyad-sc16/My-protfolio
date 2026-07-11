@@ -92,5 +92,3 @@ const menueItemsBox = document.querySelector(".menue-items");
     })
   }
 }
-
-

@@ -2,6 +2,7 @@
   0% {
     transform: translateY(20px);
   }
+
   100% {
     transform: translateY(7px);
   }
@@ -11,6 +12,7 @@
   0% {
     transform: translateY(1.875rem);
   }
+
   100% {
     transform: translateY(-1.875rem);
   }
@@ -20,11 +22,30 @@
   animation: moving 1s infinite ease-in-out alternate;
 }
 
+@keyframes bar-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.bar-track {
+  animation: bar-scroll 20s linear infinite;
+}
+
+.display-bar-2 .bar-track {
+  animation-direction: reverse;
+}
+
 /* ---- GSAP Animation Support ---- */
 
 .menue-items {
   animation: fadeInUp 0.3s ease-in;
 }
+
 .gsap-word {
   display: inline-block;
 }
@@ -39,4 +60,15 @@
 
 .and-word {
   display: inline-block;
+}
+
+/* ---- Hero Section GSAP Support ---- */
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-line-inner {
+  display: block;
 }
