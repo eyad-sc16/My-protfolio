@@ -325,3 +325,36 @@
 // ============================================
 // GSAP + ScrollTrigger — Terminal Box Pin & Scrub
 // ============================================
+
+{
+  const terminalContainer = document.querySelector(".explain-container");
+  const phrases = gsap.utils.toArray(".phrase");
+
+  if (terminalContainer && phrases.length) {
+    // Initial state: hide phrases
+    gsap.set(phrases, { opacity: 0, y: 20 });
+
+    const terminalTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: terminalContainer,
+        start: "center center",
+        end: "+=150%", // Scroll distance for pinning
+        pin: true,
+        anticipatePin: 1, // Fixes sudden jumping upon pin
+        scrub: 0.5, // Add a little smoothness to the scrub
+      },
+    });
+
+    // Stagger phrases reveal tied to scroll
+    terminalTl.to(phrases, {
+      opacity: 1,
+      y: 0,
+      stagger: 1,
+      duration: 1,
+      ease: "power2.out"
+    });
+  }
+}
+
+// Ensure triggers are calculated in DOM order because the DOM order was changed
+ScrollTrigger.sort();
