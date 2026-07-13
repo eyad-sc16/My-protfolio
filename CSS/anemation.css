@@ -72,3 +72,13 @@
 .hero-line-inner {
   display: block;
 }
+
+/* ---- Hero Decorative Line ---- */
+
+.hero-decor-line {
+  width: 60%;
+  height: 2px;
+  background: var(--black--background);
+  margin-bottom: 1.5rem;
+  transform-origin: center center;
+}

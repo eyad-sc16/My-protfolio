@@ -642,7 +642,7 @@ h1 {
 
 
 .bares-section {
-  padding: 4rem 0;
+  padding: 6rem 0;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -650,7 +650,6 @@ h1 {
   width: 100%;
   overflow: hidden;
   gap: clamp(1rem, 2vh, 2rem);
-  margin-top: 7rem;
 }
 
 .display-bar {
@@ -711,7 +710,7 @@ h1 {
   align-items: center;
   font-family: "Inter", "Plus Jakarta Sans", "Syne", sans-serif;
   width: 100%;
-  padding: 5% 3% 0 3%;
+  padding: 6rem 2rem;
 }
 
 .explain-title {

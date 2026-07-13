@@ -1,144 +1,80 @@
 
 // ============================================
-// GSAP + ScrollTrigger — Hero Section Animations
+// GSAP + ScrollTrigger — Hero Section
 // ============================================
 
 {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ---------- Helper: Wrap each <br>-separated line ----------
-  function wrapHeroLines(element) {
-    const html = element.innerHTML;
+  // ---------- Helper: wrap <br>-separated lines ----------
+  function wrapHeroLines(el) {
+    const html = el.innerHTML;
     const lines = html.split(/<br\s*\/?>/i);
-    element.innerHTML = lines
+    el.innerHTML = lines
       .map(
-        (line) =>
-          `<span class="hero-line"><span class="hero-line-inner">${line}</span></span>`
+        (l) =>
+          `<span class="hero-line"><span class="hero-line-inner">${l}</span></span>`
       )
       .join("");
-    return element.querySelectorAll(".hero-line-inner");
+    return el.querySelectorAll(".hero-line-inner");
   }
 
-  // ---------- Hero Entrance Timeline ----------
-  const heroTl = gsap.timeline({
-    defaults: { ease: "power3.out" },
-  });
+  // ---------- Create decorative line ----------
+  const heroSection = document.querySelector(".hero-section");
+  const decorLine = document.createElement("div");
+  decorLine.classList.add("hero-decor-line");
+  heroSection.querySelector(".hock-container").prepend(decorLine);
+  gsap.set(decorLine, { scaleX: 0 });
 
-  // 1. Title — line-by-line slide up with 3D rotation
-  const hockTitle = document.querySelector(".hock-title");
-  if (hockTitle) {
-    const titleInners = wrapHeroLines(hockTitle);
-    heroTl.from(titleInners, {
-      yPercent: 120,
-      opacity: 0,
-      rotationX: -45,
-      transformOrigin: "center bottom",
-      duration: 1.4,
-      stagger: 0.15,
-      ease: "power4.out",
-    });
+  // ---------- Initial states ----------
+  const titleEl = document.querySelector(".hock-title");
+  const titleInners = titleEl ? wrapHeroLines(titleEl) : [];
+
+  gsap.set(titleInners, { yPercent: -110 });
+  gsap.set(".hock-text", { clipPath: "inset(0 50% 0 50%)", opacity: 0 });
+  gsap.set(".email-link", { x: -80, opacity: 0 });
+  gsap.set(".chat-link", { x: 80, opacity: 0 });
+  gsap.set(".wellcome-text", { clipPath: "inset(0 50% 0 50%)", opacity: 0 });
+  gsap.set(".scroll-box", { opacity: 0 });
+
+  // ---------- Timeline ----------
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  // 1. Decorative line draws from center
+  tl.to(decorLine, { scaleX: 1, duration: 0.8, ease: "power3.inOut" });
+
+  // 2. Title words drop in from above
+  if (titleInners.length) {
+    tl.to(titleInners, {
+      yPercent: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "bounce.out",
+    }, "-=0.3");
   }
 
-  // 2. Subtitle — clip-path reveal + fade up
-  const hockText = document.querySelector(".hock-text");
-  if (hockText) {
-    heroTl.from(
-      hockText,
-      {
-        opacity: 0,
-        y: 40,
-        clipPath: "inset(0 0 100% 0)",
-        duration: 1,
-        ease: "power3.out",
-      },
-      "-=0.7"
-    );
-  }
+  // 3. Subtitle expands from center
+  tl.to(".hock-text", {
+    clipPath: "inset(0 0% 0 0%)",
+    opacity: 1,
+    duration: 0.8,
+    ease: "power3.inOut",
+  }, "-=0.5");
 
-  // 3. Email button — scale pop-in with bounce
-  const emailLink = document.querySelector(".email-link");
-  if (emailLink) {
-    heroTl.from(
-      emailLink,
-      {
-        opacity: 0,
-        scale: 0.5,
-        duration: 0.8,
-        ease: "back.out(2)",
-      },
-      "-=0.5"
-    );
-  }
+  // 4. Buttons slide in from opposite sides
+  tl.to(".email-link", { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, "-=0.4");
+  tl.to(".chat-link", { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, "-=0.6");
 
-  // 4. Chat button — scale pop-in with bounce
-  const chatLink = document.querySelector(".chat-link");
-  if (chatLink) {
-    heroTl.from(
-      chatLink,
-      {
-        opacity: 0,
-        scale: 0.5,
-        duration: 0.8,
-        ease: "back.out(2)",
-      },
-      "-=0.65"
-    );
-  }
+  // 5. Welcome text expands from center
+  tl.to(".wellcome-text", {
+    clipPath: "inset(0 0% 0 0%)",
+    opacity: 1,
+    duration: 0.8,
+    ease: "power3.inOut",
+  }, "-=0.3");
 
-  // 5. Welcome text — fade up
-  const wellcomeText = document.querySelector(".wellcome-text");
-  if (wellcomeText) {
-    heroTl.from(
-      wellcomeText,
-      {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-      "-=0.3"
-    );
-  }
-
-  // 6. Scroll indicator — bounce-in from above
-  const scrollBox = document.querySelector(".scroll-box");
-  if (scrollBox) {
-    heroTl.from(
-      scrollBox,
-      {
-        opacity: 0,
-        y: -20,
-        duration: 0.6,
-        ease: "bounce.out",
-      },
-      "-=0.1"
-    );
-  }
-
-  // ---------- ScrollTrigger: Hero Parallax Fade-out ----------
-  gsap.to(".hock-container", {
-    y: -120,
-    opacity: 0,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".hero-section",
-      start: "top top",
-      end: "bottom top",
-      scrub: 1.5,
-    },
-  });
-
-  gsap.to(".main-scroll-box", {
-    y: 60,
-    opacity: 0,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".hero-section",
-      start: "top top",
-      end: "60% top",
-      scrub: 1,
-    },
-  });
+  // 6. Scroll indicator fade in
+  tl.to(".scroll-box", { opacity: 1, duration: 0.5 }, "-=0.2");
 }
 
 // ============================================
@@ -146,8 +82,6 @@
 // ============================================
 
 {
-  gsap.registerPlugin(ScrollTrigger);
-
   // ---------- 1. About Title — Word-by-Word 3D Stagger ----------
   const titleWords = gsap.utils.toArray(".gsap-word");
 
@@ -258,10 +192,10 @@
       y: 100,
       transformPerspective: 800,
       transformOrigin: "left center",
-      duration: 1,
+      duration: 0.8,
       ease: "back.out(1.4)",
       stagger: {
-        each: 0.2,
+        each: 0.1,
         from: "start",
       },
       scrollTrigger: {
@@ -276,18 +210,15 @@
   const explainSpans = document.querySelectorAll(".explain-title > span");
 
   explainSpans.forEach((span, i) => {
-    // Skip the "?" span — it gets its own slide-in animation
     const isQuestionMark =
       span.textContent.trim() === "?" &&
       span === explainSpans[explainSpans.length - 1];
     if (isQuestionMark) return;
 
-    // Create a real overlay div inside the span
     const overlay = document.createElement("div");
     overlay.classList.add("span-overlay");
     span.appendChild(overlay);
 
-    // Animate the overlay sliding from left to right (off-screen)
     gsap.to(overlay, {
       xPercent: 100,
       duration: 0.4,
@@ -301,7 +232,6 @@
     });
   });
 
-  // "?" — slides in from left after the last overlay disappears
   const questionMark = document.querySelector(
     ".explain-title > span:last-child"
   );
@@ -320,6 +250,24 @@
       },
     });
   }
+
+  // ---------- 7. Tools Section — Staggered Entrance ----------
+  const toolItems = gsap.utils.toArray(".general-tool-title");
+
+  if (toolItems.length) {
+    gsap.from(toolItems, {
+      opacity: 0,
+      y: 30,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".general-tools-container",
+        start: "top 82%",
+        toggleActions: "play none none none",
+      },
+    });
+  }
 }
 
 // ============================================
@@ -327,34 +275,30 @@
 // ============================================
 
 // {
-//   const terminalContainer = document.querySelector(".explain-container");
-//   const phrases = gsap.utils.toArray(".phrase");
+//   const phrases = gsap.utils.toArray(".inner-content-body .phrase");
+//   const explainInner = document.querySelector(".explain-inner-content");
 
-//   if (terminalContainer && phrases.length) {
-//     // Initial state: hide phrases
+//   if (phrases.length && explainInner) {
 //     gsap.set(phrases, { opacity: 0, y: 20 });
 
-//     const terminalTl = gsap.timeline({
-//       scrollTrigger: {
-//         trigger: ".explain-wrapper",
-//         start: "center center",
-//         end: "+=150%", // Scroll distance for pinning
-//         pin: terminalContainer,
-//         anticipatePin: 1, // Fixes sudden jumping upon pin
-//         scrub: 0.5, // Add a little smoothness to the scrub
-//       },
-//     });
+//     const phrasesTl = gsap.timeline();
 
-//     // Stagger phrases reveal tied to scroll
-//     terminalTl.to(phrases, {
+//     phrasesTl.to(phrases, {
 //       opacity: 1,
 //       y: 0,
-//       stagger: 1,
 //       duration: 1,
-//       ease: "power2.out"
+//       stagger: 0.5,
+//       ease: "power2.out",
+//     });
+
+//     ScrollTrigger.create({
+//       trigger: explainInner,
+//       start: "top center",
+//       end: "+=1000",
+//       pin: true,
+//       pinSpacing: true,
+//       scrub: 1,
+//       animation: phrasesTl,
 //     });
 //   }
 // }
-
-// // Ensure triggers are calculated in DOM order because the DOM order was changed
-// ScrollTrigger.sort();
