@@ -11,8 +11,7 @@
 
 body {
   background-color: var(--main--body--background--color);
-  height: 100dvh;
-  height: 6000px;
+  min-height: 100dvh;
 }
 
 h1,

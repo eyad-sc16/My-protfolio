@@ -272,10 +272,16 @@
     });
   }
 
-  // ---------- 6. Explain Title — Overlay Slide Reveal ----------
-  const explainSpans = document.querySelectorAll(".explain-title span");
+  // ---------- 6. Explain Title — Overlay Slide Reveal + ? Slide-in ----------
+  const explainSpans = document.querySelectorAll(".explain-title > span");
 
   explainSpans.forEach((span, i) => {
+    // Skip the "?" span — it gets its own slide-in animation
+    const isQuestionMark =
+      span.textContent.trim() === "?" &&
+      span === explainSpans[explainSpans.length - 1];
+    if (isQuestionMark) return;
+
     // Create a real overlay div inside the span
     const overlay = document.createElement("div");
     overlay.classList.add("span-overlay");
@@ -295,23 +301,27 @@
     });
   });
 
-  // ---------- 7. Tools Section — Staggered Entrance ----------
-  const toolItems = gsap.utils.toArray(".general-tool-title");
+  // "?" — slides in from left after the last overlay disappears
+  const questionMark = document.querySelector(
+    ".explain-title > span:last-child"
+  );
 
-  if (toolItems.length) {
-    gsap.from(toolItems, {
+  if (questionMark && questionMark.textContent.trim() === "?") {
+    gsap.from(questionMark, {
       opacity: 0,
-      y: 30,
-      duration: 0.2,
-      stagger: 0.1,
-      ease: "power2.out",
+      x: -150,
+      duration: 0.35,
+      delay: 1.4,
+      ease: "power4.out",
       scrollTrigger: {
-        trigger: ".general-tools-container",
-        start: "top 82%",
+        trigger: ".explain-container",
+        start: "top 65%",
         toggleActions: "play none none none",
       },
     });
   }
-
 }
 
+// ============================================
+// GSAP + ScrollTrigger — Terminal Box Pin & Scrub
+// ============================================
