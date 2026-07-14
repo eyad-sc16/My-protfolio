@@ -59,13 +59,7 @@ const menueItemsBox = document.querySelector(".menue-items");
       innerContent[i].style.backgroundColor = "#252323";
       arrowIcon[i].classList.toggle("arrow-lighting");
     });
-    
-    // Refresh ScrollTrigger after the CSS transition finishes
-    innerContent[i].addEventListener("transitionend", function (e) {
-      if (e.propertyName === "max-height" && typeof ScrollTrigger !== "undefined") {
-        ScrollTrigger.refresh();
-      }
-    });
+
   }
 }
 
@@ -96,24 +90,8 @@ const menueItemsBox = document.querySelector(".menue-items");
       toolContent[i].classList.toggle('hidden')
       descriptionContent[i].classList.toggle('hidden')
       plusIconContainer[i].classList.toggle('rotate-45-deg')
-      
-      // Refresh ScrollTrigger immediately since this is an instant layout change
-      if (typeof ScrollTrigger !== "undefined") {
-        ScrollTrigger.refresh();
-      }
+
     })
   }
 }
 
-// Global debounced ResizeObserver as a fallback for any other dynamic height changes
-if (typeof ScrollTrigger !== "undefined") {
-  let resizeTimer;
-  const ro = new ResizeObserver(() => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 250);
-  });
-  // Observe main container to catch height changes
-  ro.observe(document.body);
-}

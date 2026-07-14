@@ -17,6 +17,45 @@ header {
 header a {
   text-decoration: none;
   color: transparent;
+  position: relative;
+}
+
+/* ---- Shared tooltip base ---- */
+.tooltip,
+.burger-tooltip {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.4rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  pointer-events: none;
+}
+
+header a:hover .tooltip,
+#burger-icon:hover ~ .burger-tooltip {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+/* ---- LinkedIn tooltip ---- */
+.tooltip {
+  bottom: -2rem;
+  color: #0077b5;
+}
+
+/* ---- Menu tooltip ---- */
+.burger-tooltip {
+  top: calc(100% + 0.5rem);
+  color: #0d0d0d;
+  z-index: 200;
 }
 
 .header-container {
@@ -212,6 +251,7 @@ h1 {
   text-wrap: nowrap;
   gap: 1rem;
   width: 50%;
+  font-style: normal;
 }
 
 .links a {
@@ -276,7 +316,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: calc(3rem);
-  padding: 6rem 0;
+  padding: 3rem 0;
   scroll-margin-top: 4rem;
 }
 
@@ -492,7 +532,7 @@ h1 {
 /* tools section */
 
 .tools-section {
-  padding: 6rem 2rem;
+  padding: 3rem 2rem;
   scroll-margin-top: 2rem;
 }
 
@@ -654,7 +694,8 @@ h1 {
 
 .display-bar {
   position: relative;
-  width: 100%;
+  width: 110vw;
+  margin-left: calc(50% - 55vw);
   height: fit-content;
   font-size: clamp(4rem, 20vw, 10rem);
   background-color: #0d0d0d;
@@ -668,13 +709,12 @@ h1 {
 
 .display-bar-1,
 .display-bar-3 {
-  transform: rotate(-2.5deg);
   background-color: rgb(77, 168, 168);
 }
 
 .display-bar-2 {
   z-index: 5;
-  transform: rotate(2.5deg);
+  transform: rotate(3deg);
 }
 
 
