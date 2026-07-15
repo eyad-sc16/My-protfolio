@@ -273,32 +273,36 @@
 // ============================================
 // GSAP + ScrollTrigger — Terminal Box Pin & Scrub
 // ============================================
+{
+  const phrases = gsap.utils.toArray(".inner-content-body .phrase");
+  const explainInner = document.querySelector(".explain-inner-content");
 
-// {
-//   const phrases = gsap.utils.toArray(".inner-content-body .phrase");
-//   const explainInner = document.querySelector(".explain-inner-content");
+  if (phrases.length && explainInner) {
+    gsap.set(phrases, { opacity: 0, y: 20 });
 
-//   if (phrases.length && explainInner) {
-//     gsap.set(phrases, { opacity: 0, y: 20 });
+    const phrasesTl = gsap.timeline();
 
-//     const phrasesTl = gsap.timeline();
+    phrasesTl.to(phrases, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.5,
+      ease: "power2.out",
+    });
 
-//     phrasesTl.to(phrases, {
-//       opacity: 1,
-//       y: 0,
-//       duration: 1,
-//       stagger: 0.5,
-//       ease: "power2.out",
-//     });
+    const phraseCount = phrases.length;
+    const scrollPerPhrase = 150;
+    const totalScroll = phraseCount * scrollPerPhrase;
 
-//     ScrollTrigger.create({
-//       trigger: explainInner,
-//       start: "top center",
-//       end: "+=1000",
-//       pin: true,
-//       pinSpacing: true,
-//       scrub: 1,
-//       animation: phrasesTl,
-//     });
-//   }
-// }
+    ScrollTrigger.create({
+      trigger: explainInner,
+      start: "center center",
+      end: `+=${totalScroll}`,
+      pin: true,
+      pinSpacing: true,
+      scrub: 1,
+      anticipatePin: 1,
+      animation: phrasesTl,
+    });
+  }
+}
