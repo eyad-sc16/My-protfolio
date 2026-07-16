@@ -263,7 +263,7 @@
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".general-tools-container",
-        start: "top 82%",
+        start: "top 85%",
         toggleActions: "play none none none",
       },
     });
@@ -294,7 +294,7 @@
     const scrollPerPhrase = 150;
     const totalScroll = phraseCount * scrollPerPhrase;
 
-    ScrollTrigger.create({
+    const st = ScrollTrigger.create({
       trigger: explainInner,
       start: "center center",
       end: `+=${totalScroll}`,
