@@ -161,27 +161,44 @@
       );
   }
 
-  // ---------- 4. Words Container — Staggered Paragraph Rise ----------
-  const wordsContainers = gsap.utils.toArray(".words-container");
+  // ---------- 4. Words Rows — Slide In From Sides ----------
+  const wordsRow1 = document.querySelector(".words-row-1");
+  const wordsRow2 = document.querySelector(".words-row-2");
 
-  wordsContainers.forEach((container, index) => {
-    const paragraphs = container.querySelectorAll("p");
-
-    if (paragraphs.length) {
-      gsap.from(paragraphs, {
-        opacity: 0,
-        y: 50,
-        duration: 0.7,
+  if (wordsRow1 && wordsRow2) {
+    gsap.fromTo(wordsRow1,
+      { x: "-20%", opacity: 0 },
+      {
+        x: "0%",
+        opacity: 1,
+        duration: 1,
         ease: "power3.out",
-        stagger: 0.1,
+        clearProps: "transform,opacity",
         scrollTrigger: {
-          trigger: container,
+          trigger: ".general-words-container",
           start: "top 90%",
           toggleActions: "play none none none",
         },
-      });
-    }
-  });
+      }
+    );
+
+    gsap.fromTo(wordsRow2,
+      { x: "20%", opacity: 0 },
+      {
+        x: "0%",
+        opacity: 1,
+        duration: 1,
+        delay: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+        scrollTrigger: {
+          trigger: ".general-words-container",
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }
 
   // ---------- 5. Advantages Boxes — 3D Perspective Stagger ----------
   const advantageBoxes = gsap.utils.toArray(".advantages-content");
@@ -202,56 +219,12 @@
         trigger: ".advantages-main-container",
         start: "top 50%",
         toggleActions: "play none none none",
+        once: true,
       },
     });
   }
 
-  // ---------- 6. Explain Title — Overlay Slide Reveal + ? Slide-in ----------
-  const explainSpans = document.querySelectorAll(".explain-title > span");
-
-  explainSpans.forEach((span, i) => {
-    const isQuestionMark =
-      span.textContent.trim() === "?" &&
-      span === explainSpans[explainSpans.length - 1];
-    if (isQuestionMark) return;
-
-    const overlay = document.createElement("div");
-    overlay.classList.add("span-overlay");
-    span.appendChild(overlay);
-
-    gsap.to(overlay, {
-      xPercent: 100,
-      duration: 0.4,
-      delay: i * 0.2,
-      ease: "power2.in",
-      scrollTrigger: {
-        trigger: ".explain-container",
-        start: "top 65%",
-        toggleActions: "play none none none",
-      },
-    });
-  });
-
-  const questionMark = document.querySelector(
-    ".explain-title > span:last-child"
-  );
-
-  if (questionMark && questionMark.textContent.trim() === "?") {
-    gsap.from(questionMark, {
-      opacity: 0,
-      x: -150,
-      duration: 0.35,
-      delay: 1.4,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: ".explain-container",
-        start: "top 65%",
-        toggleActions: "play none none none",
-      },
-    });
-  }
-
-  // ---------- 7. Tools Section — Staggered Entrance ----------
+  // ---------- 6. Tools Section — Staggered Entrance ----------
   const toolItems = gsap.utils.toArray(".general-tool-title");
 
   if (toolItems.length) {
@@ -265,44 +238,74 @@
         trigger: ".general-tools-container",
         start: "top 85%",
         toggleActions: "play none none none",
+        once: true,
       },
     });
   }
 }
 
 // ============================================
-// GSAP + ScrollTrigger — Terminal Box Pin & Scrub
+// GSAP + ScrollTrigger — Highlight Text Pin & Scrub
 // ============================================
 {
-  const phrases = gsap.utils.toArray(".inner-content-body .phrase");
-  const explainInner = document.querySelector(".explain-inner-content");
+  const highlightText = document.querySelector(".highlight-text");
 
-  if (phrases.length && explainInner) {
-    gsap.set(phrases, { opacity: 0, y: 20 });
+  if (highlightText) {
+    function splitTextNodes(parent) {
+      const walker = document.createTreeWalker(parent, NodeFilter.SHOW_TEXT, null, false);
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
 
-    const phrasesTl = gsap.timeline();
+      textNodes.forEach(node => {
+        const words = node.textContent.split(/(\s+)/);
+        if (words.length <= 1) return;
 
-    phrasesTl.to(phrases, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.5,
-      ease: "power2.out",
-    });
+        const frag = document.createDocumentFragment();
+        words.forEach(part => {
+          if (part.match(/^\s+$/)) {
+            frag.appendChild(document.createTextNode(part));
+          } else if (part.length > 0) {
+            const span = document.createElement("span");
+            span.className = "hl-word";
+            span.textContent = part;
+            frag.appendChild(span);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      });
+    }
 
-    const phraseCount = phrases.length;
-    const scrollPerPhrase = 150;
-    const totalScroll = phraseCount * scrollPerPhrase;
+    splitTextNodes(highlightText);
 
-    const st = ScrollTrigger.create({
-      trigger: explainInner,
-      start: "center center",
-      end: `+=${totalScroll}`,
-      pin: true,
-      pinSpacing: true,
-      scrub: 1,
-      anticipatePin: 1,
-      animation: phrasesTl,
-    });
+    const hlWords = gsap.utils.toArray(".highlight-text .hl-word");
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+      gsap.set(hlWords, { color: "var(--long--text)", backgroundColor: "transparent" });
+    } else if (hlWords.length) {
+      gsap.set(hlWords, { color: "transparent", backgroundColor: "rgba(0,0,0,0.12)" });
+
+      const hlTl = gsap.timeline();
+
+      hlTl.to(hlWords, {
+        color: "var(--long--text)",
+        backgroundColor: "rgba(0,0,0,0)",
+        duration: 1,
+        stagger: 0.05,
+        ease: "power1.out",
+      });
+
+      ScrollTrigger.create({
+        trigger: ".highlight-section",
+        start: "center center",
+        end: "+=150%",
+        pin: true,
+        pinSpacing: true,
+        scrub: 1,
+        anticipatePin: 1,
+        animation: hlTl,
+      });
+    }
   }
 }

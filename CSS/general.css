@@ -9,8 +9,13 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--main--body--background--color);
+  overflow-x: hidden;
 }
 
 h1,

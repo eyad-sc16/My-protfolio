@@ -62,6 +62,30 @@
   display: inline-block;
 }
 
+/* ---- Words Row Marquee ---- */
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.words-row-1 {
+  animation: marquee-left 25s linear infinite;
+}
+
+.words-row-2 {
+  animation: marquee-right 25s linear infinite;
+}
+
+.words-row:hover {
+  animation-play-state: paused;
+}
+
 /* ---- Hero Section GSAP Support ---- */
 
 .hero-line {
