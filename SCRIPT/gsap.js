@@ -78,6 +78,72 @@
 }
 
 // ============================================
+// GSAP + ScrollTrigger — Highlight Text Pin & Scrub
+// ============================================
+{
+  const highlightText = document.querySelector(".highlight-text");
+
+  if (highlightText) {
+    function splitTextNodes(parent) {
+      const walker = document.createTreeWalker(parent, NodeFilter.SHOW_TEXT, null, false);
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      textNodes.forEach(node => {
+        const words = node.textContent.split(/(\s+)/);
+        if (words.length <= 1) return;
+
+        const frag = document.createDocumentFragment();
+        words.forEach(part => {
+          if (part.match(/^\s+$/)) {
+            frag.appendChild(document.createTextNode(part));
+          } else if (part.length > 0) {
+            const span = document.createElement("span");
+            span.className = "hl-word";
+            span.textContent = part;
+            frag.appendChild(span);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      });
+    }
+
+    splitTextNodes(highlightText);
+
+    const hlWords = gsap.utils.toArray(".highlight-text .hl-word");
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+      gsap.set(hlWords, { color: "var(--long--text)", backgroundColor: "transparent" });
+    } else if (hlWords.length) {
+      gsap.set(hlWords, { color: "transparent", backgroundColor: "rgba(0,0,0,0.12)" });
+
+      const hlTl = gsap.timeline();
+
+      hlTl.to(hlWords, {
+        color: "var(--long--text)",
+        backgroundColor: "rgba(0,0,0,0)",
+        duration: 1,
+        stagger: 0.05,
+        ease: "power1.out",
+      });
+
+      ScrollTrigger.create({
+        trigger: ".highlight-section",
+        start: "center center",
+        end: "+=150%",
+        pin: true,
+        pinSpacing: true,
+        scrub: 1,
+        anticipatePin: 1,
+        animation: hlTl,
+      });
+    }
+  }
+}
+
+// ============================================
 // GSAP + ScrollTrigger — About Section Animations
 // ============================================
 
@@ -217,9 +283,9 @@
       },
       scrollTrigger: {
         trigger: ".advantages-main-container",
-        start: "top 50%",
+        start: "top 90%",
         toggleActions: "play none none none",
-        once: true,
+        once: false,
       },
     });
   }
@@ -241,71 +307,5 @@
         once: true,
       },
     });
-  }
-}
-
-// ============================================
-// GSAP + ScrollTrigger — Highlight Text Pin & Scrub
-// ============================================
-{
-  const highlightText = document.querySelector(".highlight-text");
-
-  if (highlightText) {
-    function splitTextNodes(parent) {
-      const walker = document.createTreeWalker(parent, NodeFilter.SHOW_TEXT, null, false);
-      const textNodes = [];
-      while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-      textNodes.forEach(node => {
-        const words = node.textContent.split(/(\s+)/);
-        if (words.length <= 1) return;
-
-        const frag = document.createDocumentFragment();
-        words.forEach(part => {
-          if (part.match(/^\s+$/)) {
-            frag.appendChild(document.createTextNode(part));
-          } else if (part.length > 0) {
-            const span = document.createElement("span");
-            span.className = "hl-word";
-            span.textContent = part;
-            frag.appendChild(span);
-          }
-        });
-        node.parentNode.replaceChild(frag, node);
-      });
-    }
-
-    splitTextNodes(highlightText);
-
-    const hlWords = gsap.utils.toArray(".highlight-text .hl-word");
-
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    if (isMobile) {
-      gsap.set(hlWords, { color: "var(--long--text)", backgroundColor: "transparent" });
-    } else if (hlWords.length) {
-      gsap.set(hlWords, { color: "transparent", backgroundColor: "rgba(0,0,0,0.12)" });
-
-      const hlTl = gsap.timeline();
-
-      hlTl.to(hlWords, {
-        color: "var(--long--text)",
-        backgroundColor: "rgba(0,0,0,0)",
-        duration: 1,
-        stagger: 0.05,
-        ease: "power1.out",
-      });
-
-      ScrollTrigger.create({
-        trigger: ".highlight-section",
-        start: "center center",
-        end: "+=150%",
-        pin: true,
-        pinSpacing: true,
-        scrub: 1,
-        anticipatePin: 1,
-        animation: hlTl,
-      });
-    }
   }
 }
