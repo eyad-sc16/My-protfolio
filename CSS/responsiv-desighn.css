@@ -95,9 +95,13 @@
   .icon-container-2 {
     right: 0;
   }
+
+
+  .animated-title-container {
+    padding: 2rem 0rem;
+  }
+
 }
-
-
 
 
 
@@ -113,10 +117,6 @@
 
   .highlight-text {
     text-align: center;
-  }
-
-  .animated-title-container .animated-title {
-    align-items: center;
   }
 
 }

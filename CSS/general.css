@@ -16,7 +16,7 @@ html {
 body {
   background-color: var(--main--body--background--color);
   overflow-x: hidden;
-  height: 6000px;
+  height: 7000px;
 }
 
 h1,
