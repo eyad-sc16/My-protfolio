@@ -9,7 +9,7 @@ header {
   justify-content: space-between;
   align-items: center;
   height: clamp(3rem, 5vw, 4rem);
-  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.3rem);
   background-color: var(--main--body--background--color);
   z-index: 100;
 }
@@ -66,7 +66,7 @@ header a:hover .tooltip,
 .name-text-container h3 {
   text-wrap: nowrap;
   color: var(--titels--text);
-  font-size: clamp(1rem, 5vw, 1.4rem);
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
   font-family: "Syne", "Inter", "Plus Jakarta Sans", sans-serif;
 }
 
@@ -150,7 +150,7 @@ header a:hover .tooltip,
 .menue-items nav a {
   color: #000000;
   font-family: "Inter", "Plus Jakarta Sans", sans-serif, "Syne";
-  font-size: clamp(0.8rem, 5vw, 1.3rem);
+  font-size: clamp(1rem, 5vw, 1.5rem);
 }
 
 .menue-items.items-open {
@@ -173,7 +173,7 @@ svg {
 }
 
 h1 {
-  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-size: clamp(2.2rem, 7vw, 3.5rem);
   text-align: center;
 }
 
@@ -236,12 +236,13 @@ h1 {
 }
 
 .hock-title {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   color: var(--titels--text);
 }
 
 .hock-text {
   color: rgb(86, 84, 84);
+  font-size: clamp(1.1rem, 5vw, 1.8rem);
 }
 
 .links {
@@ -276,7 +277,7 @@ h1 {
 }
 
 .wellcome-text {
-  font-size: clamp(1.1rem, 3vw, 2rem);
+  font-size: clamp(1.3rem, 3.5vw, 2.3rem);
 }
 
 .main-scroll-box {
@@ -322,18 +323,18 @@ h1 {
 
 
 .about-section h2 {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
 }
 
 .about-section .about-title {
   color: var(--titels--text);
-  font-size: clamp(1.6rem, 6vw, 3.8rem);
+  font-size: clamp(1.8rem, 7vw, 4.2rem);
   text-align: start;
   text-align: center;
 }
 
 .about-text {
-  font-size: clamp(0.9rem, 3.5vw, 2rem);
+  font-size: clamp(1.1rem, 4vw, 2.3rem);
   font-family: "Inter";
   color: var(--long--text);
 }
@@ -359,7 +360,7 @@ h1 {
 }
 
 .h2-conatainer h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-family: "Syne", sans-serif, "Inter", "Plus Jakarta Sans";
 }
 
@@ -378,7 +379,7 @@ h1 {
 .words-row {
   display: flex;
   width: max-content;
-  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
   font-family: "Plus Jakarta Sans", "Inter", "Syne", sans-serif;
   font-weight: 800;
   text-transform: uppercase;
@@ -407,9 +408,10 @@ h1 {
   align-items: center;
   width: 100%;
   height: fit-content;
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
   font-family: "Inter", "Plus Jakarta Sans", "Syne", sans-serif;
   gap: 2rem;
+  z-index: 10;
 }
 
 .advantages-content {
@@ -470,7 +472,7 @@ h1 {
   display: flex;
   align-items: center;
   padding-left: 0.5rem;
-  font-size: clamp(0.5rem, 5vw, 1.5rem);
+  font-size: clamp(0.65rem, 5vw, 1.7rem);
   text-wrap: wrap;
   z-index: 6;
 }
@@ -502,7 +504,7 @@ h1 {
 .inner-advantges-content {
   padding: 0 2rem;
   z-index: 5;
-  font-size: clamp(1rem, 5vw, 1.1rem);
+  font-size: clamp(1.1rem, 5vw, 1.3rem);
   letter-spacing: normal;
   color: rgb(164, 164, 164);
   line-height: 2rem;
@@ -548,7 +550,7 @@ h1 {
 
 .big-title h1 {
   letter-spacing: 0.5rem;
-  font-size: clamp(2.4rem, 10vw, 4rem);
+  font-size: clamp(2.8rem, 11vw, 4.5rem);
   font-family: sans-serif, "Plus Jakarta Sans", "Inter", "Syne";
   text-align: start;
 }
@@ -564,7 +566,7 @@ h1 {
 .sub-title {
   position: relative;
   bottom: -0.5rem;
-  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  font-size: clamp(1rem, 3.5vw, 1.7rem);
   font-family: "Inter", sans-serif, "Plus Jakarta Sans", "Syne";
   color: rgb(78, 78, 78);
   text-wrap: nowrap;
@@ -603,7 +605,7 @@ h1 {
   width: 100%;
   padding: 0.5rem;
   font-weight: 500;
-  font-size: clamp(1rem, 5vw, 1.5rem);
+  font-size: clamp(1.2rem, 5vw, 1.7rem);
   font-family: "Inter";
   color: var(--titels--text);
   cursor: pointer;
@@ -663,12 +665,12 @@ h1 {
   font-family: "Inter", sans-serif, "Plus Jakarta Sans", "Syne";
   color: var(--brown-primary);
   font-weight: 500;
-  font-size: clamp(0.9rem, 5vw, 1.2rem);
+  font-size: clamp(1.05rem, 5vw, 1.4rem);
 }
 
 .description-content {
   font-family: "Inter", sans-serif, "Plus Jakarta Sans", "Syne";
-  font-size: clamp(1.1rem, 5vw, 1.5rem);
+  font-size: clamp(1.3rem, 5vw, 1.7rem);
 }
 
 .description-content span {
@@ -702,7 +704,7 @@ h1 {
   width: 110vw;
   margin-left: calc(50% - 55vw);
   height: fit-content;
-  font-size: clamp(4rem, 20vw, 10rem);
+  font-size: clamp(4.5rem, 22vw, 11rem);
   background-color: #0d0d0d;
   color: var(--white-main--text);
   transform-origin: center center;
@@ -788,4 +790,43 @@ h1 {
   background: rgb(77, 168, 168);
   padding: 2px 8px;
   border-radius: 4px;
+}
+
+.animated-title {
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  color: #1e4848;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.4em;
+  display: flex;
+  align-items: center;
+}
+
+.animated-title-container {
+  padding: 2rem;
+}
+
+.at-line {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.at-line.icon-container {
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+}
+
+.at-word {
+  display: inline-block;
+}
+
+.at-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.animated-title-container svg {
+  width: clamp(3rem, 10vw, 10rem);
+  height: clamp(3rem, 10vw, 10rem);
 }

@@ -112,7 +112,7 @@
 
     const hlWords = gsap.utils.toArray(".highlight-text .hl-word");
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
     if (isMobile) {
       gsap.set(hlWords, { color: "var(--long--text)", backgroundColor: "transparent" });
@@ -306,6 +306,33 @@
         toggleActions: "play none none none",
         once: true,
       },
+    });
+  }
+
+  // ---------- 7. Animated Title — Slide Up From Below ----------
+  const atWords = gsap.utils.toArray(".at-word, .at-icon");
+
+  if (atWords.length) {
+    gsap.set(atWords, { yPercent: 100 });
+
+    const atTl = gsap.timeline();
+
+    atTl.to(atWords, {
+      yPercent: 0,
+      duration: 1,
+      ease: "power4.out",
+      stagger: {
+        each: 0.12,
+        from: "start",
+      },
+    });
+
+    ScrollTrigger.create({
+      trigger: ".animated-title",
+      start: "top 80%",
+      end: "+=80%",
+      scrub: 1,
+      animation: atTl,
     });
   }
 }

@@ -1,3 +1,22 @@
+@keyframes rotate360 {
+  0% {
+    transform: rotate(-25deg);
+    ;
+  }
+
+  25% {
+    transform: rotate(15deg);
+  }
+
+  75% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(15deg);
+  }
+}
+
 @keyframes moving {
   0% {
     transform: translateY(20px);
@@ -65,13 +84,23 @@
 /* ---- Words Row Marquee ---- */
 
 @keyframes marquee-left {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-right {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 .words-row-1 {
@@ -105,4 +134,8 @@
   background: var(--black--background);
   margin-bottom: 1.5rem;
   transform-origin: center center;
+}
+
+.icon-container {
+  animation: rotate360 1s infinite alternate;
 }

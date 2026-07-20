@@ -21,6 +21,11 @@
     display: none;
   }
 
+  .advantages-main-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
   .about-section .advantages-content {
     width: 98%;
   }
@@ -77,6 +82,19 @@
   .highlight-section {
     padding: 3rem 1rem;
   }
+
+  .animated-title {
+
+    align-items: center;
+  }
+
+  .icon-container-1 {
+    left: 0;
+  }
+
+  .icon-container-2 {
+    right: 0;
+  }
 }
 
 
@@ -95,6 +113,10 @@
 
   .highlight-text {
     text-align: center;
+  }
+
+  .animated-title-container .animated-title {
+    align-items: center;
   }
 
 }
