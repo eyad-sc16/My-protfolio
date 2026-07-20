@@ -101,6 +101,18 @@
     padding: 2rem 0rem;
   }
 
+  .life-word {
+    filter: drop-shadow(5px 5px 0px black);
+  }
+
+  .web-word {
+    filter: drop-shadow(5px 0px 0px rgb(136, 89, 7));
+  }
+
+  .motion-word {
+    filter: drop-shadow(5px 0px 0px rgb(5, 5, 5));
+  }
+
 }
 
 
@@ -117,6 +129,18 @@
 
   .highlight-text {
     text-align: center;
+  }
+
+  .life-word {
+    filter: drop-shadow(5px 5px 0px black);
+  }
+
+  .web-word {
+    filter: drop-shadow(5px 0px 0px rgb(136, 89, 7));
+  }
+
+  .motion-word {
+    filter: drop-shadow(5px 0px 0px rgb(5, 5, 5));
   }
 
 }
