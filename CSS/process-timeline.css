@@ -1,0 +1,129 @@
+/* ========================================================
+   PROCESS TIMELINE CSS
+   ======================================================== */
+.process-timeline-section {
+  position: relative;
+  background-color: transparent; /* Use transparent to blend with existing site if needed, or stick to dark */
+  color: #fff;
+  padding: 10vh 0; 
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+.pt-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 20px;
+}
+
+.pt-spine {
+  position: absolute;
+  top: calc(15vh + 10px); 
+  bottom: 0;
+  left: 53px; 
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05); 
+  z-index: 1;
+}
+
+.pt-spine-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00f0ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+  transform-origin: top center;
+  transform: scaleY(0); 
+}
+
+.pt-steps {
+  position: relative;
+  z-index: 2;
+}
+
+.pt-step {
+  display: flex;
+  min-height: 80vh; 
+  padding-top: 15vh; 
+}
+
+.pt-step:last-child {
+  min-height: 40vh; 
+}
+
+.pt-indicator {
+  width: 68px; 
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pt-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #050505;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pt-dot.active {
+  background: #00f0ff;
+  border-color: #00f0ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.4);
+  transform: scale(1.2);
+}
+
+.pt-content {
+  flex: 1;
+  padding-left: 40px;
+  opacity: 0.3;
+  transform: translateY(40px);
+}
+
+.pt-number {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #00f0ff;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.pt-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.pt-desc {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .pt-indicator {
+    width: 40px;
+  }
+  .pt-spine {
+    left: 39px; 
+  }
+  .pt-content {
+    padding-left: 20px;
+  }
+  .pt-title {
+    font-size: 2.5rem;
+  }
+  .pt-desc {
+    font-size: 1.125rem;
+  }
+}

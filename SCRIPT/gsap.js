@@ -335,4 +335,143 @@
       animation: atTl,
     });
   }
+
+  // ---------- 8. Process Timeline ----------
+  const processSection = document.querySelector(".process-section");
+  const processSteps = document.querySelectorAll(".process-step");
+  const timelineFill = document.querySelector(".timeline-fill");
+
+  if (processSection && processSteps.length && timelineFill) {
+    gsap.set(timelineFill, { scaleY: 0 });
+
+    const pkText = document.querySelector(".process-kicker");
+    if (pkText) {
+      const pkOriginal = pkText.textContent;
+      pkText.textContent = "";
+      pkOriginal.split("").forEach((ch) => {
+        const span = document.createElement("span");
+        span.className = "pk-char";
+        const inner = document.createElement("span");
+        inner.className = "pk-char-inner";
+        inner.textContent = ch === " " ? "\u00a0" : ch;
+        span.appendChild(inner);
+        pkText.appendChild(span);
+      });
+      const pkChars = pkText.querySelectorAll(".pk-char-inner");
+      gsap.set(pkChars, { x: () => -(window.innerWidth + 200) });
+      gsap.to(pkChars, {
+        x: 0,
+        duration: 0.5,
+        ease: "power3.out",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: ".process-header",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    const ptWords = gsap.utils.toArray(".process-title .pt-word");
+    if (ptWords.length) {
+      gsap.set(ptWords, { yPercent: 100 });
+      gsap.to(ptWords, {
+        yPercent: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".process-header",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    gsap.to(timelineFill, {
+      scaleY: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".process-timeline",
+        start: "top 70%",
+        end: "bottom 70%",
+        scrub: true,
+      },
+    });
+
+    processSteps.forEach((step) => {
+      const card = step.querySelector(".step-card");
+      const marker = step.querySelector(".step-marker");
+      const number = step.querySelector(".step-number");
+      const cardNumber = step.querySelector(".step-card-number");
+      const title = step.querySelector(".step-title");
+      const desc = step.querySelector(".step-desc");
+
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0.3,
+          y: 48,
+          backgroundColor: "#ffffff",
+          color: "#0d0d0d",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          backgroundColor: "#1f1f1f",
+          color: "#ffffff",
+          ease: "none",
+          scrollTrigger: {
+            trigger: marker,
+            start: "center 70%",
+            end: "center 52%",
+            scrub: true,
+          },
+        }
+      );
+
+      gsap.to([title, cardNumber], {
+        color: "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: marker,
+          start: "center 70%",
+          end: "center 52%",
+          scrub: true,
+        },
+      });
+
+      gsap.to(desc, {
+        color: "#d7d7d7",
+        ease: "none",
+        scrollTrigger: {
+          trigger: marker,
+          start: "center 70%",
+          end: "center 52%",
+          scrub: true,
+        },
+      });
+
+      gsap.to(marker, {
+        backgroundColor: "#0d0d0d",
+        ease: "none",
+        scrollTrigger: {
+          trigger: marker,
+          start: "center 70%",
+          end: "center 52%",
+          scrub: true,
+        },
+      });
+
+      gsap.to(number, {
+        color: "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: marker,
+          start: "center 70%",
+          end: "center 52%",
+          scrub: true,
+        },
+      });
+    });
+  }
 }

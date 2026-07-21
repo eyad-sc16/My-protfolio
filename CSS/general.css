@@ -16,7 +16,8 @@ html {
 body {
   background-color: var(--main--body--background--color);
   overflow-x: hidden;
-  height: 7000px;
+  position: relative;
+
 }
 
 h1,
@@ -33,6 +34,7 @@ h6 {
  */
 :root {
   scroll-behavior: smooth;
+  --light-yellow: #fefbf2;
   --brown-primary: #6B4423;
   --brown-dark: #4A3728;
   --black--background: #252323;

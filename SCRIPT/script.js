@@ -53,10 +53,10 @@ const menueItemsBox = document.querySelector(".menue-items");
   for (let i = 0; i < advantagesContent.length; i++) {
     advantagesContent[i].addEventListener("click", function () {
       innerContent[i].classList.toggle("inner-open");
+      innerContent[i].style.backgroundColor = "#252323";
       contentArrowBox[i].classList.toggle("rotate-180-deg");
       contentTitle[i].classList.toggle("hidden");
       hoverWord[i].classList.toggle("hidden");
-      innerContent[i].style.backgroundColor = "#252323";
       arrowIcon[i].classList.toggle("arrow-lighting");
     });
 

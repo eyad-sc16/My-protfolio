@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process Timeline Demo</title>
+  <!-- Load GSAP and ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    /* Reset and base styles for demo page */
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+    }
+    .spacer {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      color: #555;
+      font-family: sans-serif;
+      font-size: 2rem;
+    }
+
+    /* ========================================================
+       PROCESS TIMELINE CSS
+       ======================================================== */
+    .process-timeline-section {
+      position: relative;
+      background-color: #050505;
+      color: #fff;
+      padding: 10vh 0; /* Add padding so the spine doesn't abruptly hit the edge */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+    }
+
+    .pt-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0 20px;
+    }
+
+    /* The Continuous Connecting Line (Spine) */
+    .pt-spine {
+      position: absolute;
+      top: calc(15vh + 10px); /* Aligns perfectly with the center of the first dot (15vh padding + 10px half dot) */
+      bottom: 0;
+      left: 53px; /* 20px container padding + 33px (center of the 68px indicator area) */
+      width: 2px;
+      background: rgba(255, 255, 255, 0.05); /* Un-filled dim line */
+      z-index: 1;
+    }
+
+    /* The glowing fill of the line */
+    .pt-spine-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #00f0ff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+      transform-origin: top center;
+      transform: scaleY(0); /* Starts completely scaled down */
+    }
+
+    /* Steps Layout */
+    .pt-steps {
+      position: relative;
+      z-index: 2;
+    }
+
+    .pt-step {
+      display: flex;
+      min-height: 80vh; /* Deliberate scrolling distance per step */
+      padding-top: 15vh; /* Pushes content down slightly from the step trigger start */
+    }
+
+    .pt-step:last-child {
+      min-height: 40vh; /* Last step needs less height below it */
+    }
+
+    /* Indicator (Contains the glowing dot) */
+    .pt-indicator {
+      width: 68px; /* Fixed width to center the dot over the spine */
+      display: flex;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pt-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #050505;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pt-dot.active {
+      background: #00f0ff;
+      border-color: #00f0ff;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.4);
+      transform: scale(1.2);
+    }
+
+    /* Step Content Area */
+    .pt-content {
+      flex: 1;
+      padding-left: 40px;
+      /* Initial state for ScrollTrigger */
+      opacity: 0.3;
+      transform: translateY(40px);
+    }
+
+    .pt-number {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #00f0ff;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .pt-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #f8fafc;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .pt-desc {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .pt-indicator {
+        width: 40px;
+      }
+      .pt-spine {
+        left: 39px; /* 20px padding + 19px (center of 40px indicator minus 1px for spine half-width) */
+      }
+      .pt-content {
+        padding-left: 20px;
+      }
+      .pt-title {
+        font-size: 2.5rem;
+      }
+      .pt-desc {
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Spacer to demonstrate scrolling into the section -->
+  <div class="spacer">Scroll Down ↓</div>
+
+  <!-- ========================================================
+       PROCESS TIMELINE HTML
+       ======================================================== -->
+  <section class="process-timeline-section">
+    <div class="pt-container">
+      
+      <!-- The background and fill line -->
+      <div class="pt-spine">
+        <div class="pt-spine-fill"></div>
+      </div>
+      
+      <div class="pt-steps">
+        
+        <!-- Step 1 -->
+        <div class="pt-step">
+          <div class="pt-indicator">
+            <div class="pt-dot"></div>
+          </div>
+          <div class="pt-content">
+            <span class="pt-number">01</span>
+            <h3 class="pt-title">Discovery</h3>
+            <p class="pt-desc">We start by understanding your goals, audience, and requirements to set a clear, strategic direction.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="pt-step">
+          <div class="pt-indicator">
+            <div class="pt-dot"></div>
+          </div>
+          <div class="pt-content">
+            <span class="pt-number">02</span>
+            <h3 class="pt-title">Design</h3>
+            <p class="pt-desc">Crafting beautiful, intuitive interfaces with a focus on premium aesthetics and seamless user experience.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="pt-step">
+          <div class="pt-indicator">
+            <div class="pt-dot"></div>
+          </div>
+          <div class="pt-content">
+            <span class="pt-number">03</span>
+            <h3 class="pt-title">Animation</h3>
+            <p class="pt-desc">Bringing the designs to life with smooth, purposeful motion and interactions using advanced web capabilities.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="pt-step">
+          <div class="pt-indicator">
+            <div class="pt-dot"></div>
+          </div>
+          <div class="pt-content">
+            <span class="pt-number">04</span>
+            <h3 class="pt-title">Launch</h3>
+            <p class="pt-desc">Final testing, optimization, and seamless deployment to deliver a flawless, high-performing experience.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ======================================================== -->
+
+  <!-- Spacer to demonstrate scrolling past the section -->
+  <div class="spacer">Scroll Up ↑</div>
+
+  <!-- ========================================================
+       PROCESS TIMELINE JS
+       ======================================================== -->
+  <script>
+    // Ensure GSAP and ScrollTrigger are loaded
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Animate the spine fill line
+    // The line scales perfectly with the scroll distance over the container
+    ScrollTrigger.create({
+      trigger: ".pt-container",
+      start: "top 50%",    // Starts filling exactly when the container top hits the center of the viewport
+      end: "bottom 50%",   // Finishes when the bottom of the container hits the center of the viewport
+      animation: gsap.to(".pt-spine-fill", { 
+        scaleY: 1, 
+        ease: "none" 
+      }),
+      scrub: true
+    });
+
+    // 2. Animate each step individually
+    const steps = document.querySelectorAll(".pt-step");
+
+    steps.forEach((step) => {
+      const content = step.querySelector(".pt-content");
+      const dot = step.querySelector(".pt-dot");
+
+      // Animate the step content (opacity and offset)
+      gsap.to(content, {
+        opacity: 1,
+        y: 0,
+        ease: "none", // Linear scrubbing feels best for direct scroll control
+        scrollTrigger: {
+          trigger: step,
+          start: "top 70%", // Triggers when step top enters bottom 30% of screen
+          end: "top 30%",   // Ends when step top reaches top 30% of screen
+          scrub: true,
+        }
+      });
+
+      // Toggle the dot's glowing active state
+      // This is triggered exactly when the dot hits the center of the screen,
+      // which perfectly synchronizes with the tip of the growing line!
+      ScrollTrigger.create({
+        trigger: dot,
+        start: "center 50%", 
+        onEnter: () => dot.classList.add("active"),
+        onLeaveBack: () => dot.classList.remove("active")
+      });
+    });
+  </script>
+
+</body>
+</html>
