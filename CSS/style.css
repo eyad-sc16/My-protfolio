@@ -1069,31 +1069,4 @@ footer {
   border-top-right-radius: 5rem;
 }
 
-.smooth-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: fit-content;
-  padding-bottom: clamp(1.5rem, 5vh, 3rem);
-}
 
-.smooth-section-title h1 {
-  font-size: clamp(3rem, 5vw, 4.5rem);
-}
-
-.smooth-svg-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.smooth-svg-container svg {
-  width: clamp(20rem, 50vw, 40rem);
-}
-
-
-.bottom-title {
-  text-align: center;
-  font-size: clamp(3rem, 5vw, 4.5rem);
-}
