@@ -117,6 +117,33 @@
   }
 }
 
+@media (max-width: 680px) {
+  .process-section {
+    min-height: 380vh;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .timeline-track {
+    left: 1.35rem;
+  }
+
+  .process-step {
+    min-height: 82vh;
+    padding-left: 4rem;
+  }
+
+  .step-marker {
+    left: 1.35rem;
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .step-card {
+    border-radius: 0.4rem;
+  }
+}
+
 @media (width <430px) {}
 
 @media (768px <=width <=915px) {}

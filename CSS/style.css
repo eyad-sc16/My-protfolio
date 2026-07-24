@@ -213,8 +213,8 @@ h1 {
   align-items: center;
   justify-content: center;
   background: var(--brown-primary);
-  width: clamp(3rem, 5vw, 4.3rem);
-  height: clamp(3rem, 5vw, 4.5rem);
+  width: clamp(2.8rem, 5vw, 3.7rem);
+  height: clamp(3rem, 5vw, 4rem);
   overflow: hidden;
   border-top-left-radius: 40%;
   border-top-right-radius: 40%;
@@ -223,6 +223,8 @@ h1 {
   z-index: 1000;
   cursor: pointer;
   transition: transform 0.1s ease;
+  transform: scale(0);
+  pointer-events: none;
 }
 
 .inner-return-container {
@@ -279,7 +281,7 @@ h1 {
 
 .hock-text {
   color: rgb(86, 84, 84);
-  font-size: clamp(1.1rem, 5vw, 1.8rem);
+  font-size: clamp(1rem, 5vw, 1.2rem);
 }
 
 .links {
@@ -371,7 +373,7 @@ h1 {
 }
 
 .about-text {
-  font-size: clamp(1.1rem, 4vw, 2.3rem);
+  font-size: clamp(1rem, 4vw, 2.3rem);
   font-family: "Inter", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
   color: var(--long--text);
 }
@@ -397,8 +399,8 @@ h1 {
 }
 
 .h2-conatainer h2 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-family: "Syne", sans-serif, "Inter", "Plus Jakarta Sans";
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-family: "Plus Jakarta Sans", "Syne", sans-serif, "Inter";
 }
 
 .general-words-container {
@@ -895,12 +897,11 @@ h1 {
   width: 100%;
   min-height: 420vh;
   padding: clamp(5rem, 10vw, 8rem) 2rem;
-  background: var(--light-yellow);
+
   color: #0d0d0d;
   overflow: visible;
   font-family: "Inter", "Plus Jakarta Sans", "Syne", Arial, Helvetica, sans-serif;
   border-top: 0.1rem solid rgb(178, 178, 178);
-  border-bottom: 0.1rem solid rgb(178, 178, 178);
 }
 
 .process-header {
@@ -1058,29 +1059,41 @@ h1 {
   line-height: 1.7;
 }
 
-@media (max-width: 680px) {
-  .process-section {
-    min-height: 380vh;
-    padding-right: 1rem;
-    padding-left: 1rem;
-  }
+footer {
+  background: linear-gradient(to bottom, rgba(188, 54, 27, 0.2), rgba(188, 54, 27, 0.4), rgba(188, 54, 27, 0.6), rgba(188, 54, 27, 0.8), rgba(188, 54, 27, 1));
+  margin-top: auto;
+  min-height: 20rem;
+  max-height: 21;
+  width: 100%;
+  border-top-left-radius: 5rem;
+  border-top-right-radius: 5rem;
+}
 
-  .timeline-track {
-    left: 1.35rem;
-  }
+.smooth-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  padding-bottom: clamp(1.5rem, 5vh, 3rem);
+}
 
-  .process-step {
-    min-height: 82vh;
-    padding-left: 4rem;
-  }
+.smooth-section-title h1 {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+}
 
-  .step-marker {
-    left: 1.35rem;
-    width: 2.7rem;
-    height: 2.7rem;
-  }
+.smooth-svg-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .step-card {
-    border-radius: 0.4rem;
-  }
+.smooth-svg-container svg {
+  width: clamp(20rem, 50vw, 40rem);
+}
+
+
+.bottom-title {
+  text-align: center;
+  font-size: clamp(3rem, 5vw, 4.5rem);
 }

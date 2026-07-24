@@ -336,6 +336,54 @@
     });
   }
 
+  // ---------- Return Button — show on advantages, hide on about ----------
+  {
+    const returnBtn = document.querySelector(".return-main-container");
+    if (returnBtn) {
+      // Flag: true = button is in the "visible zone" (below advantages start)
+      var btnEnabled = false;
+
+      ScrollTrigger.create({
+        trigger: ".advantages-main-container",
+        start: "top 80%",
+        onEnter: function () {
+          btnEnabled = true;
+          gsap.to(returnBtn, { scale: 1, duration: 0.4, ease: "back.out(2)", pointerEvents: "all" });
+        },
+        onLeaveBack: function () {
+          btnEnabled = false;
+          gsap.to(returnBtn, { scale: 0, duration: 0.3, ease: "power2.in", pointerEvents: "none" });
+        },
+      });
+
+      returnBtn.addEventListener("mouseenter", function () {
+        if (returnBtn.style.pointerEvents !== "none") {
+          gsap.to(returnBtn, { scale: 1.05, duration: 0.15, ease: "power2.out" });
+        }
+      });
+      returnBtn.addEventListener("mouseleave", function () {
+        if (returnBtn.style.pointerEvents !== "none") {
+          gsap.to(returnBtn, { scale: 1, duration: 0.15, ease: "power2.out" });
+        }
+      });
+
+      // Hide button when footer enters, show when leaving (only if in the visible zone)
+      ScrollTrigger.create({
+        trigger: "#footer",
+        start: "top bottom",
+        end: "top 85%",
+        onEnter: function () {
+          gsap.to(returnBtn, { scale: 0, opacity: 0, pointerEvents: "none", duration: 0.3, ease: "power2.in" });
+        },
+        onLeaveBack: function () {
+          if (btnEnabled) {
+            gsap.to(returnBtn, { scale: 1, opacity: 1, pointerEvents: "all", duration: 0.3, ease: "power2.out" });
+          }
+        },
+      });
+    }
+  }
+
   // ---------- 8. Process Timeline ----------
   const processSection = document.querySelector(".process-section");
   const processSteps = document.querySelectorAll(".process-step");
@@ -385,6 +433,22 @@
           toggleActions: "play none none none",
         },
       });
+
+      // Shadow reveals with clip-path from left
+      gsap.fromTo(
+        ".from-word, .to-word",
+        { clipPath: "inset(0 100% 0 0)" },
+        {
+          clipPath: "inset(0 0% 0 0)",
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".process-header",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }
 
     gsap.to(timelineFill, {
@@ -398,7 +462,7 @@
       },
     });
 
-    processSteps.forEach((step) => {
+    processSteps.forEach((step, i) => {
       const card = step.querySelector(".step-card");
       const marker = step.querySelector(".step-marker");
       const number = step.querySelector(".step-number");
@@ -429,7 +493,7 @@
         }
       );
 
-      gsap.to([title, cardNumber], {
+      gsap.to(cardNumber, {
         color: "#ffffff",
         ease: "none",
         scrollTrigger: {
@@ -472,6 +536,231 @@
           scrub: true,
         },
       });
+
+      // ---- Each step-title gets a different animation ----
+      var tlOpts = {
+        scrollTrigger: {
+          trigger: marker,
+          start: "center 70%",
+          toggleActions: "play none none reverse",
+        },
+      };
+
+      switch (i) {
+        case 0:
+          // Discovery — slides from left with clip
+          gsap.set(title, { clipPath: "inset(0 100% 0 0)", x: -30 });
+          gsap.to(title, {
+            clipPath: "inset(0 0% 0 0)",
+            x: 0,
+            color: "#ffffff",
+            duration: 0.7,
+            ease: "power3.out",
+            ...tlOpts,
+          });
+          break;
+
+        case 1:
+          // Design — letters spin in from random angles
+          var designText = title.textContent;
+          title.textContent = "";
+          var designLetters = [];
+          designText.split("").forEach(function (ch) {
+            var span = document.createElement("span");
+            span.style.display = "inline-block";
+            span.textContent = ch === " " ? "\u00a0" : ch;
+            title.appendChild(span);
+            designLetters.push(span);
+          });
+          gsap.set(designLetters, {
+            scale: 0,
+            rotation: gsap.utils.random(-180, 180, true),
+            opacity: 0,
+          });
+          gsap.to(designLetters, {
+            scale: 1,
+            rotation: 0,
+            opacity: 1,
+            color: "#ffffff",
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "back.out(1.7)",
+            ...tlOpts,
+          });
+          break;
+
+        case 2:
+          // Animation — letters stagger from below
+          var animText = title.textContent;
+          title.textContent = "";
+          var animLetters = [];
+          animText.split("").forEach(function (ch) {
+            var span = document.createElement("span");
+            span.style.display = "inline-block";
+            span.textContent = ch === " " ? "\u00a0" : ch;
+            title.appendChild(span);
+            animLetters.push(span);
+          });
+          gsap.set(animLetters, { y: 30, opacity: 0 });
+          gsap.to(animLetters, {
+            y: 0,
+            opacity: 1,
+            color: "#ffffff",
+            duration: 0.4,
+            stagger: 0.04,
+            ease: "power3.out",
+            ...tlOpts,
+          });
+          break;
+
+        case 3:
+          // Launch — letters stagger up from below
+          var launchText = title.textContent;
+          title.textContent = "";
+          var launchLetters = [];
+          launchText.split("").forEach(function (ch) {
+            var span = document.createElement("span");
+            span.style.display = "inline-block";
+            span.textContent = ch === " " ? "\u00a0" : ch;
+            title.appendChild(span);
+            launchLetters.push(span);
+          });
+          gsap.set(launchLetters, { yPercent: 100, opacity: 0 });
+          gsap.to(launchLetters, {
+            yPercent: 0,
+            opacity: 1,
+            color: "#ffffff",
+            duration: 0.5,
+            stagger: 0.04,
+            ease: "power3.out",
+            ...tlOpts,
+          });
+          break;
+      }
+    });
+  }
+}
+
+// Footer — rises from below like a drawer
+{
+  const footer = document.querySelector("#footer");
+  if (footer) {
+    gsap.set(footer, { clipPath: "inset(100% 0 0 0)", opacity: 0 });
+    gsap.to(footer, {
+      clipPath: "inset(0% 0 0 0)",
+      opacity: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#footer",
+        start: "top bottom",
+        end: "top 60%",
+        scrub: 1,
+      },
+    });
+  }
+}
+
+// SVG — random path-by-path reveal like highlight
+{
+  var smoothPaths = gsap.utils.toArray(".smooth-svg-container svg path");
+
+  if (smoothPaths.length) {
+    var smoothTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".smooth-section",
+        start: "center center",
+        end: "+=150%",
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+      },
+      defaults: { ease: "none" },
+    });
+
+    smoothPaths.forEach(function (path) {
+      gsap.set(path, { opacity: 0 });
+      smoothTl.to(path, { opacity: 1 }, Math.random() * 0.8);
+    });
+
+  }
+}
+
+// "Smooth ~" — epic character animation
+{
+  var smoothTitle = document.querySelector(".smooth-section-title h1");
+  if (smoothTitle) {
+    var stText = smoothTitle.textContent;
+    smoothTitle.textContent = "";
+    var stChars = [];
+    stText.split("").forEach(function (ch) {
+      var span = document.createElement("span");
+      span.style.display = "inline-block";
+      span.textContent = ch === " " ? "\u00a0" : ch;
+      smoothTitle.appendChild(span);
+      stChars.push(span);
+    });
+
+    gsap.set(stChars, {
+      opacity: 0,
+      scale: 0,
+      rotation: function () { return gsap.utils.random(-180, 180); },
+      x: function () { return gsap.utils.random(-200, 200); },
+      y: function () { return gsap.utils.random(-200, 200); },
+    });
+
+    gsap.to(stChars, {
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      x: 0,
+      y: 0,
+      duration: 1.2,
+      stagger: 0.04,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: ".smooth-section",
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  }
+}
+
+// "Imagine" — epic character animation
+{
+  var imagineEl = document.querySelector(".bottom-title");
+  if (imagineEl) {
+    var imText = imagineEl.textContent;
+    imagineEl.textContent = "";
+    var imChars = [];
+    imText.split("").forEach(function (ch) {
+      var span = document.createElement("span");
+      span.style.display = "inline-block";
+      span.textContent = ch === " " ? "\u00a0" : ch;
+      imagineEl.appendChild(span);
+      imChars.push(span);
+    });
+
+    gsap.set(imChars, {
+      opacity: 0,
+      yPercent: 120,
+      rotation: function () { return gsap.utils.random(-30, 30); },
+      scale: 0.3,
+    });
+
+    gsap.to(imChars, {
+      opacity: 1,
+      yPercent: 0,
+      rotation: 0,
+      scale: 1,
+      duration: 0.8,
+      stagger: 0.06,
+      ease: "back.out(2)",
+      scrollTrigger: {
+        trigger: ".smooth-section",
+        start: "center top",
+        toggleActions: "play none none none",
+      },
     });
   }
 }
